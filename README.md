@@ -15,8 +15,10 @@ publicRouter.post('/login', userController.login);
 
 // Upload Video API only for Admin
 publicRouter.post('/video/upload', authenticateAdmin, upload.single('video'), videoController.uploadVideo);
+
 // Stream Video API only for Customer
 publicRouter.post('/video/stream/:videoId', authenticateCustomer, videoController.streamVideo);
+
 // Fetch Videos API only for Customer
 publicRouter.post('/videos', authenticateCustomer, videoController.fetchVideosForCustomer);
 
