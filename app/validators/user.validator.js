@@ -1,6 +1,7 @@
 // 'use strict';
 const Joi = require('joi');
 const nameRegex =require('../../shared/regular-expression').NAME;
+const phoneRegex =require('../../shared/regular-expression').PHONE;
 
 exports.validateCreateUser = validateCreateUser;
 exports.validateLoginUser = validateLoginUser;
@@ -14,7 +15,7 @@ function validateCreateUser(user) {
     const schema = Joi.object({
         username: Joi.string().regex(nameRegex).min(5).max(50).required(),
         email: Joi.string().email().allow(''),
-        phone: Joi.string().allow(''),
+        phone: Joi.string().regex(phoneRegex).allow(''),
         password: Joi.string().required(),
       }).custom((value, helpers) => {
         if (!value.email && !value.phone) {
@@ -34,11 +35,11 @@ function validateCreateUser(user) {
 function validateLoginUser(user) {
     const schema = Joi.object({
         email: Joi.string().email().allow(''),
-        phone: Joi.string().allow(''),
+        phone: Joi.string().regex(phoneRegex).allow(''),
         password: Joi.string().required(),
     }).custom((value, helpers) => {
-        if (!value.email && !value.phone) {
-          return helpers.message('"email" or "phone" is required');
+        if ((!value.email && !value.phone) || (value.email && value.phone)) {
+          return helpers.message('"Either email" or "phone" is required');
         }
         return value;
     });
