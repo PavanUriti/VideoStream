@@ -20,7 +20,7 @@ publicRouter.post('/video/stream/:videoId', authenticateCustomer, videoControlle
 // Fetch Videos API only for Customer
 publicRouter.post('/videos', authenticateCustomer, videoController.fetchVideosForCustomer);
 
-// Plan CURD for Admin
+// CURD for Admin
 publicRouter.post('/plan', authenticateAdmin, planController.createPlan);
 publicRouter.get('/plan', planController.getPlans);
 publicRouter.put('/plan/:planId', authenticateAdmin, planController.updatePlan);
@@ -36,7 +36,7 @@ publicRouter.post('/plan/buy/:planId', authenticateCustomer, purchasePlanControl
 publicRouter.get('/favorite/gallery', authenticateCustomer, favoritesController.getFavorites);
 publicRouter.post('/favorite/:videoId', authenticateCustomer, favoritesController.addToFavorites);
 
-// Create Friends Group
+// Friends Group
 publicRouter.post('/group', authenticateCustomer, groupController.createGroup);
 publicRouter.put('/group/:groupId', authenticateCustomer, groupController.addMemberToFriendGroup);
 
