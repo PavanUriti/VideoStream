@@ -35,7 +35,7 @@ function validateCreateUser(user) {
 function validateLoginUser(user) {
     const schema = Joi.object({
         email: Joi.string().email().allow(''),
-        phone: Joi.string().allow(''),
+        phone: Joi.string().regex(phoneRegex).allow(''),
         password: Joi.string().required(),
     }).custom((value, helpers) => {
         if ((!value.email && !value.phone) || (value.email && value.phone)) {
