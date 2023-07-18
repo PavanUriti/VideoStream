@@ -42,3 +42,9 @@ publicRouter.post('/favorite/:videoId', authenticateCustomer, favoritesControlle
 publicRouter.post('/group', authenticateCustomer, groupController.createGroup);
 publicRouter.put('/group/:groupId', authenticateCustomer, groupController.addMemberToFriendGroup);
 
+
+Multer Integration:
+The backend uses Multer, a middleware for handling file uploads in Node.js, to enable the `Upload Video API`.
+
+Attaching Postman Collection APIs.
+
