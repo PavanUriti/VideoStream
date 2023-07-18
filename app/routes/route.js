@@ -54,7 +54,7 @@ publicRouter.post('/video/stream/:videoId', authenticateCustomer, videoControlle
 // Fetch Videos API only for Customer
 publicRouter.post('/videos', authenticateCustomer, videoController.fetchVideosForCustomer);
 
-// Plan CURD for Admin
+//CURD for Admin
 publicRouter.post('/plan', authenticateAdmin, planController.createPlan);
 publicRouter.get('/plan', planController.getPlans);
 publicRouter.put('/plan/:planId', authenticateAdmin, planController.updatePlan);
