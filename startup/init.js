@@ -3,6 +3,8 @@
 const helmet = require('helmet');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const requestLogger = require('../middleware/reqlogger');
+
 module.exports = init;
 
 /**
@@ -18,6 +20,7 @@ async function init(app) {
         console.log(ex, '');
     });
     await require('./mongo.init')();
+    app.use(requestLogger);
     app.use(cors());
     app.use(helmet());
     app.use(bodyParser.json({limit: '100mb'}));
